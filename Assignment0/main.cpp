@@ -15,10 +15,17 @@ float AngleToRadian(float angle_in_degree){
 int main(){
 
     Vector3f v(2, 1, 0);
-    Matrix3f trans;
-    trans << std::cos(AngleToRadian(Angle_Value)), -std::sin(AngleToRadian(Angle_Value)), 1,
-             std::sin(AngleToRadian(Angle_Value)), std::cos(AngleToRadian(Angle_Value)), 2,
+    Matrix3f move;
+    move << 1, 0, 1,
+            0, 1, 2,
+            0, 0, 1;
+    Matrix3f rotate;
+    rotate << std::cos(AngleToRadian(Angle_Value)), -std::sin(AngleToRadian(Angle_Value)), 0,
+             std::sin(AngleToRadian(Angle_Value)), std::cos(AngleToRadian(Angle_Value)), 0,
              0, 0, 1;
-    std::cout << trans * v << std::endl;
+    std::cout << rotate * move << std::endl;
+    std::cout << move * rotate << std::endl;
+    std::cout << "result: " << std::endl;
+    std::cout << move * rotate * v << std::endl;
     return 0;
 }
